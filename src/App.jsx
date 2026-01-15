@@ -132,18 +132,18 @@ function App() {
 
   const testimonials = [
     {
-      name: 'Maria Helena, Vitória',
-      text: 'No momento mais difícil, eles cuidaram de tudo. Não tive que me preocupar com nenhum papel. Gratidão eterna.',
+      name: 'Sara Becker',
+      text: 'Fui super bem atendida pela funerária príncipe da paz. Atendeu o óbito do meu tio com preço justo, empresa séria, rapidez e agilidade. Parabéns à toda equipe - são humanos e entendem nosso momento.',
       stars: 5
     },
     {
-      name: 'Roberto Almeida, Vila Velha',
-      text: 'O Plano Premium foi a melhor escolha. Consegui incluir minha sogra de 82 anos e ficamos tranquilos.',
+      name: 'Patricia Paganini Vieira, Cariacica',
+      text: 'A Funerária Príncipe da Paz atendeu minha tia muito bem, com amor e carinho. Preço justo, urna linda, coroa de flores natural. Tudo lindo, super indico!',
       stars: 5
     },
     {
-      name: 'Ana Paula, Cariacica',
-      text: 'Atendimento impecável e respeitoso. A equipe chegou muito rápido e nos orientou em tudo.',
+      name: 'Maria Mary',
+      text: 'A melhor funerária do Espírito Santo. Atendeu meu pai com amor e carinho, nos orientou no cartório, nos deu apoio no momento tão difícil. Parabéns!',
       stars: 5
     }
   ];
