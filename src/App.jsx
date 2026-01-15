@@ -239,7 +239,8 @@ function App() {
           
           <motion.button
             onClick={() => {
-              document.getElementById('planos')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+              setSelectedPlan('Plano Premium');
+              setCheckoutOpen(true);
             }}
             className="bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg px-12 md:px-16 py-4 md:py-5 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full md:w-auto mb-3"
             variants={fadeInUp}
