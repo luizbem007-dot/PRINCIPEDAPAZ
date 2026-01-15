@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { 
   Phone, 
@@ -25,6 +25,7 @@ function App() {
   const [openFaq, setOpenFaq] = useState(null);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
+  const plansRef = useRef(null);
   const whatsappNumber = '5527997363659';
   const whatsappMessage = encodeURIComponent('Olá! Gostaria de conhecer os planos da Funerária Príncipe da Paz.');
 
@@ -238,7 +239,9 @@ function App() {
           </motion.p>
           
           <motion.button
-            onClick={() => setCheckoutOpen(true)}
+            onClick={() => {
+              plansRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
             className="bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg px-12 md:px-16 py-4 md:py-5 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full md:w-auto mb-3"
             variants={fadeInUp}
           >
@@ -513,7 +516,7 @@ function App() {
       </section>
 
       {/* Seção de Benefícios Premium */}
-      <section className="py-20 md:py-32 bg-amber-50">
+      <section className="py-20 md:py-32 bg-amber-50" ref={plansRef}>
         <div className="container mx-auto px-4">
           <motion.div
             className="text-center mb-16 md:mb-20"
