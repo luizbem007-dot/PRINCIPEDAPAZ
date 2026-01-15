@@ -225,7 +225,7 @@ function App() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-[#2C2C2C] mb-6 leading-tight"
             variants={fadeInUp}
           >
-            Proteja sua família inteira<br />
+            Proteja sua <span className="text-[#D4AF37]">família</span><br />
             por menos de<br />
             R$ <span className="text-[#B8860B] font-black">1,60</span> ao dia.
           </motion.h1>
