@@ -531,7 +531,7 @@ function App() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto"
             initial="initial"
             whileInView="whileInView"
             variants={staggerContainer}
@@ -579,7 +579,7 @@ function App() {
           </motion.div>
 
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 max-w-4xl mx-auto"
+            className="grid grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto"
             initial="initial"
             whileInView="whileInView"
             variants={staggerContainer}
