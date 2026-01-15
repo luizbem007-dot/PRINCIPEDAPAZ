@@ -12,7 +12,12 @@ import {
   Users,
   Sparkles,
   Star,
-  Quote
+  Quote,
+  AlertCircle,
+  ClipboardList,
+  FileText,
+  CheckCircle2,
+  ShieldCheck
 } from 'lucide-react';
 import CheckoutModal from './components/CheckoutModal';
 
@@ -44,52 +49,59 @@ function App() {
   const authority = [
     {
       icon: Award,
-      title: '+15 Anos',
+      title: '15 Anos',
       subtitle: 'de Experiência'
     },
     {
       icon: Users,
-      title: '+10.000',
-      subtitle: 'Famílias Protegidas'
+      title: '10.000',
+      subtitle: 'Famílias Atendidas'
     },
     {
       icon: Phone,
-      title: 'Atendimento 24h',
-      subtitle: 'Grande Vitória'
+      title: 'Espírito Santo',
+      subtitle: 'Cobertura Total'
+    },
+    {
+      icon: Heart,
+      title: 'Proteção',
+      subtitle: 'Completa e Humanizada'
     }
   ];
 
   const plans = [
     {
       name: 'Plano Família',
-      subtitle: 'O Essencial',
+      subtitle: 'O Econômico',
       price: '47,90',
-      description: 'Para Titular, Cônjuge, Filhos e Pais (até 70 anos)',
+      description: 'Proteção essencial para o núcleo familiar.',
       benefits: [
+        '👨‍👩‍👧‍👦 Quem participa: Você + Cônjuge + Filhos + Pais',
+        '⛔ Regra de Idade: Todos devem ter até 70 anos na contratação',
+        '🔒 Sem Fidelidade: Cancele quando quiser, sem multa',
         'Cobertura para até 8 pessoas',
-        'Titular + Cônjuge + Filhos',
-        'Inclui Pais (até 70 anos)',
         'Carência Zero para acidentes',
         'Atendimento 24h'
       ],
-      cta: 'Quero Proteger Minha Casa',
+      cta: 'Quero o Plano Família',
       recommended: false,
       style: 'white'
     },
     {
       name: 'Plano Premium',
-      subtitle: 'O Ilimitado',
+      subtitle: 'O Sem Limites 👑',
       price: '67,90',
-      description: 'Inclui Agregados e SEM LIMITE DE IDADE',
-      highlight: 'Ideal para proteger quem você ama, sem restrições.',
+      description: 'Liberdade total para escolher quem proteger.',
+      highlight: '',
       benefits: [
+        '👑 Quem participa: Qualquer pessoa (Sogros, Tios, Vizinhos, Amigos)',
+        '🚀 Sem Limite de Idade: Aceitamos dependentes com mais de 70 anos',
+        '🔒 Sem Fidelidade: Cancele quando quiser, sem multa',
         'Cobertura para até 8 pessoas',
-        'SEM LIMITE DE IDADE (Aceita idosos acima de 70 anos)',
-        'SEM GRAU DE PARENTESCO (Sogros, tios, agregados)',
         'Carência Zero para acidentes',
         'Urna de Luxo e Traslado Completo'
       ],
-      cta: 'Quero a Cobertura Máxima',
+      cta: 'Quero Cobertura Máxima',
       recommended: true,
       style: 'gold'
     }
@@ -99,139 +111,154 @@ function App() {
     {
       icon: Shield,
       title: 'Assistência Funeral Completa',
-      description: 'Urna, Flores, Traslado e todo suporte necessário'
+      description: 'Urna funerária, flores naturais e paramentos. Preparação do corpo e organização do velório com total respeito.'
     },
     {
       icon: Clock,
-      title: 'Carência Zero para Acidentes',
-      description: 'Proteção imediata quando você mais precisa'
+      title: 'Atendimento Ágil 24h',
+      description: 'Nossa equipe de plantão atende seu chamado a qualquer hora. Suporte rápido e transporte especializado na Grande Vitória.'
     },
     {
       icon: Sparkles,
-      title: 'Sem Taxas Escondidas',
-      description: 'Transparência total, sem surpresas no momento difícil'
+      title: 'Acolhimento e Orientação',
+      description: 'Você não estará sozinho. Oferecemos suporte humanizado e orientamos sua família sobre os próximos passos com tranquilidade.'
     },
     {
       icon: Heart,
-      title: 'Atendimento em 30 minutos',
-      description: 'Resposta humanizada e ágil para sua família'
+      title: 'Sem Surpresas Financeiras',
+      description: 'Evite gastos inesperados de até R$ 5.000. Com o plano, o serviço essencial já está pago e protege seu orçamento.'
     }
   ];
 
   const testimonials = [
     {
-      name: 'Maria Helena Santos',
-      text: 'Em um momento tão difícil, encontramos na Príncipe da Paz não apenas profissionalismo, mas verdadeiro acolhimento. Gratidão eterna.',
+      name: 'Maria Helena, Vitória',
+      text: 'No momento mais difícil, eles cuidaram de tudo. Não tive que me preocupar com nenhum papel. Gratidão eterna.',
       stars: 5
     },
     {
-      name: 'Roberto Almeida',
-      text: 'Ter o plano já contratado nos poupou de preocupações financeiras em um momento de luto. Recomendo a todos pensarem nisso com antecedência.',
+      name: 'Roberto Almeida, Vila Velha',
+      text: 'O Plano Premium foi a melhor escolha. Consegui incluir minha sogra de 82 anos e ficamos tranquilos.',
       stars: 5
     },
     {
-      name: 'Ana Paula Costa',
-      text: 'Atendimento impecável, digno e respeitoso. A equipe cuidou de cada detalhe com carinho. Muito obrigada!',
+      name: 'Ana Paula, Cariacica',
+      text: 'Atendimento impecável e respeitoso. A equipe chegou muito rápido e nos orientou em tudo.',
       stars: 5
     }
   ];
 
   const faqs = [
     {
-      question: 'Qual a diferença entre o Plano Família e o Plano Premium?',
-      answer: 'O Plano Família cobre titular, cônjuge, filhos e pais até 70 anos. Já o Plano Premium não tem limite de idade e aceita qualquer pessoa, independente do grau de parentesco - incluindo sogros, tios, agregados e amigos próximos.'
+      question: 'Qual a carência do plano?',
+      answer: 'Existe uma carência contratual para o início da cobertura (consulte os prazos no contrato). A proteção não é imediata para óbitos ocorridos no mesmo dia da contratação.'
     },
     {
-      question: 'Como funciona a carência?',
-      answer: 'Para acidentes, a carência é ZERO - proteção imediata. Para morte natural, há uma breve carência conforme estabelecido em contrato. Entre em contato para detalhes completos.'
+      question: 'Posso incluir meu pai de 75 anos?',
+      answer: 'Sim, mas apenas no Plano Premium (R$ 67,90). O Plano Família tem limite de entrada até 70 anos.'
     },
     {
-      question: 'O que acontece se o falecimento ocorrer fora da Grande Vitória?',
-      answer: 'Atendemos toda a região da Grande Vitória - ES. Nosso serviço de traslado garante que seu familiar seja transportado com dignidade, segurança e todo o respeito que merece.'
+      question: 'O que está incluso no serviço?',
+      answer: 'Urna mortuária, preparação do corpo, ornamentação, cortejo fúnebre, trâmites burocráticos e traslado na Grande Vitória.'
     },
     {
-      question: 'Quais serviços estão inclusos?',
-      answer: 'Nossos planos incluem urna, flores, traslado, preparação, velório, documentação e todo o suporte necessário. Sem custos adicionais ou surpresas.'
+      question: 'Tem fidelidade ou multa?',
+      answer: 'Não. Você pode cancelar a qualquer momento se não estiver satisfeito. Ficamos juntos pela confiança.'
     }
   ];
 
   return (
     <div className="min-h-screen bg-[#FDFBF7]">
-      {/* Header Elegante */}
-      <header className="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-amber-100">
-        <div className="container mx-auto px-4 py-4 flex justify-between items-center">
-          <h1 className="text-2xl md:text-3xl font-serif font-bold bg-gradient-to-r from-amber-700 to-amber-500 bg-clip-text text-transparent">
-            Príncipe da Paz
-          </h1>
-          <a 
-            href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="bg-gradient-to-r from-amber-600 to-amber-500 hover:from-amber-700 hover:to-amber-600 text-white px-4 md:px-6 py-2 md:py-3 rounded-full font-semibold flex items-center gap-2 transition-all duration-300 shadow-lg hover:shadow-xl text-sm md:text-base"
-          >
-            <MessageCircle size={20} />
-            <span className="hidden sm:inline">Falar no WhatsApp</span>
-            <span className="sm:hidden">Contato</span>
-          </a>
+      {/* Hero Section - Exatamente como a imagem */}
+      <section className="min-h-screen flex items-center justify-center bg-[#F5F0E8] pb-12 relative overflow-hidden">
+        {/* Efeito dourado no fundo */}
+        <div className="absolute bottom-0 right-0 w-96 h-96 bg-gradient-to-br from-[#D4AF37] to-[#C4A027] rounded-full opacity-20 blur-3xl"></div>
+        
+        {/* Header integrado no Hero */}
+        <div className="absolute top-0 left-0 right-0 w-full px-6 py-6 z-50">
+          <div className="container mx-auto flex justify-between items-start">
+            {/* Logo */}
+            <img 
+              src="/Logo.png" 
+              alt="Funerária Príncipe da Paz" 
+              className="h-20 w-auto object-contain"
+              onError={(e) => {
+                e.target.style.display = 'none';
+                if (e.target.nextElementSibling) e.target.nextElementSibling.style.display = 'block';
+              }}
+            />
+            <div 
+              className="hidden text-center text-sm font-bold text-[#D4AF37]"
+              style={{ fontFamily: 'serif' }}
+            >
+              Príncipe da Paz
+            </div>
+            
+            {/* Botão Contato */}
+            <a 
+              href={`https://wa.me/${whatsappNumber}?text=${whatsappMessage}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-[#D4AF37] hover:bg-[#C4A027] text-white px-8 py-3 rounded-full font-bold text-base shadow-md hover:shadow-lg transition-all duration-300"
+            >
+              Contato
+            </a>
+          </div>
         </div>
-      </header>
 
-      {/* Hero Section Cinematográfica */}
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20">
         <div 
-          className="absolute inset-0 bg-cover bg-center"
+          className="absolute inset-0 opacity-15"
           style={{
-            backgroundImage: 'url(https://images.unsplash.com/photo-1511895426328-dc8714191300?q=80&w=2400)',
+            backgroundImage: 'url(https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2400)',
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
           }}
         />
-        <div className="absolute inset-0 bg-gradient-to-b from-[#3E2723]/70 via-[#3E2723]/60 to-[#1A1A1A]/80" />
         
         <motion.div 
-          className="relative z-10 container mx-auto px-4 py-20 text-center"
+          className="relative z-10 container mx-auto px-6 text-center max-w-4xl pt-24"
           initial="initial"
           animate="whileInView"
           variants={staggerContainer}
         >
-          <motion.h2 
-            className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-white mb-6 leading-tight text-shadow-soft"
+          <motion.h1 
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-serif font-bold text-[#2C2C2C] mb-6 leading-tight"
             variants={fadeInUp}
           >
-            O Legado de Paz<br />da Sua Família
-          </motion.h2>
+            Proteja sua família inteira<br />
+            por menos de<br />
+            R$ <span className="text-[#B8860B] font-black">1,60</span> ao dia.
+          </motion.h1>
           
           <motion.p 
-            className="text-xl md:text-2xl lg:text-3xl text-amber-100 mb-12 max-w-3xl mx-auto font-light"
+            className="text-lg md:text-xl text-gray-700 mb-10 leading-relaxed font-bold"
             variants={fadeInUp}
           >
-            Dignidade, respeito e proteção completa<br className="hidden md:block" />
-            por um valor que não pesa no bolso
+            Um plano funerário completo que protege e cuida da sua família por você. <span className="text-[#B8860B]">Sem fidelidade, sem taxas extras</span> e livre de complicações.
           </motion.p>
           
-          <motion.a
-            href="#planos"
-            className="inline-block gradient-gold text-white text-lg md:text-xl px-10 md:px-14 py-5 md:py-6 rounded-full font-bold shadow-2xl hover:shadow-amber-500/50 transition-all duration-300 transform hover:scale-105 uppercase tracking-wider"
+          <motion.button
+            onClick={() => setCheckoutOpen(true)}
+            className="bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg px-12 md:px-16 py-4 md:py-5 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full md:w-auto mb-3"
             variants={fadeInUp}
           >
-            Conhecer os Planos
-          </motion.a>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div 
-          className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1, duration: 1, repeat: Infinity, repeatType: 'reverse' }}
-        >
-          <ChevronDown className="text-amber-300" size={32} />
+            QUERO PROTEGER MINHA FAMÍLIA AGORA
+          </motion.button>
+          <motion.p 
+            className="text-sm text-gray-600 flex items-center justify-center gap-2"
+            variants={fadeInUp}
+          >
+            <Check size={16} className="text-green-600" />
+            Compra segura e imediata
+          </motion.p>
         </motion.div>
       </section>
 
       {/* Barra de Autoridade */}
-      <section className="gradient-gold py-12 md:py-16">
+      <section className="bg-gradient-to-r from-[#B8984A] via-[#D4AF37] to-[#B8984A] py-12 md:py-20">
         <div className="container mx-auto px-4">
           <motion.div 
-            className="grid md:grid-cols-3 gap-8 md:gap-12"
+            className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-12"
             initial="initial"
             whileInView="whileInView"
             variants={staggerContainer}
@@ -240,14 +267,18 @@ function App() {
             {authority.map((item, index) => (
               <motion.div
                 key={index}
-                className="text-center text-white"
+                className="text-center"
                 variants={fadeInUp}
               >
-                <item.icon className="mx-auto mb-4" size={48} strokeWidth={1.5} />
-                <h3 className="text-3xl md:text-4xl font-serif font-bold mb-2">
+                <div className="flex justify-center mb-3 md:mb-4">
+                  <div className="bg-white/20 backdrop-blur-sm p-3 md:p-4 rounded-full">
+                    <item.icon className="text-white" size={32} strokeWidth={1.5} />
+                  </div>
+                </div>
+                <h3 className="text-2xl md:text-4xl font-serif font-bold text-white mb-1 md:mb-2">
                   {item.title}
                 </h3>
-                <p className="text-lg opacity-90">{item.subtitle}</p>
+                <p className="text-sm md:text-lg text-white/90">{item.subtitle}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -255,18 +286,15 @@ function App() {
       </section>
 
       {/* Seção de Planos Premium */}
-      <section id="planos" className="py-20 md:py-32 bg-white">
+      <section id="planos" className="py-12 md:py-32 bg-white">
         <div className="container mx-auto px-4">
           <motion.div
-            className="text-center mb-16 md:mb-20"
+            className="text-center mb-8 md:mb-20"
             {...fadeInUp}
           >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#3E2723] mb-6">
-              Planos pensados para cada<br className="hidden md:block" />momento da sua vida
+            <h2 className="text-2xl md:text-5xl lg:text-6xl font-serif font-bold text-[#3E2723] mb-3 md:mb-6">
+              Escolha a proteção ideal<br className="hidden md:block" />para sua realidade
             </h2>
-            <p className="text-xl md:text-2xl text-amber-800 font-light">
-              Escolha a proteção ideal para quem você ama
-            </p>
           </motion.div>
 
           <div className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-6xl mx-auto">
@@ -277,67 +305,86 @@ function App() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: index * 0.2 }}
-                className={`relative rounded-3xl p-8 md:p-10 shadow-2xl transition-all duration-300 hover:shadow-3xl ${
+                className={`relative rounded-3xl p-6 md:p-12 shadow-lg border-2 ${
                   plan.recommended 
-                    ? 'bg-gradient-to-br from-amber-50 to-amber-100 border-2 border-amber-400 transform md:scale-105' 
-                    : 'bg-white border-2 border-amber-300'
+                    ? 'bg-white border-amber-300' 
+                    : 'bg-white border-amber-200'
                 }`}
               >
                 {plan.recommended && (
                   <div className="absolute -top-5 left-1/2 transform -translate-x-1/2">
-                    <span className="gradient-gold text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg">
+                    <span className="bg-[#D4AF37] text-white px-6 py-2 rounded-full text-sm font-bold uppercase tracking-wider shadow-lg">
                       Recomendado
                     </span>
                   </div>
                 )}
 
-                <div className="text-center mb-8">
-                  <p className="text-amber-700 font-semibold text-sm uppercase tracking-widest mb-2">
-                    {plan.subtitle}
-                  </p>
-                  <h3 className="text-3xl md:text-4xl font-serif font-bold text-[#3E2723] mb-4">
-                    {plan.name}
-                  </h3>
-                  
-                  <div className="mb-6">
-                    <div className="flex items-baseline justify-center gap-2 mb-3">
-                      <span className="text-2xl text-amber-700">R$</span>
-                      <span className="text-5xl md:text-6xl font-serif font-bold text-[#3E2723]">
-                        {plan.price}
-                      </span>
-                      <span className="text-2xl text-amber-700">/mês</span>
-                    </div>
-                    <p className="text-[#3E2723] font-semibold text-lg border-t-2 border-b-2 border-amber-300 py-3 mx-8">
-                      {plan.description}
-                    </p>
+                <div className="text-center mb-6 md:mb-8">
+                  {/* Badge no topo */}
+                  <div className="inline-block bg-[#D4AF37] text-white px-4 py-1.5 md:px-6 md:py-2 rounded-full text-xs md:text-sm font-bold mb-4 md:mb-6">
+                    {plan.name} Completo
                   </div>
 
-                  {plan.highlight && (
-                    <p className="text-amber-800 italic mb-6 text-base">
-                      {plan.highlight}
-                    </p>
-                  )}
+                  {/* Preço grande */}
+                  <div className="flex items-baseline justify-center gap-1 md:gap-2 mb-3 md:mb-4">
+                    <span className="text-lg md:text-xl text-gray-600">R$</span>
+                    <span className="text-5xl md:text-7xl font-serif font-bold text-[#3E2723]">
+                      {plan.price}
+                    </span>
+                    <span className="text-xl md:text-2xl text-gray-600">/mês</span>
+                  </div>
+
+                  {/* Descrição com destaque */}
+                  <p className="text-base md:text-lg text-gray-700 mb-2">
+                    {plan.description.split('até')[0]}até <span className="font-bold text-[#D4AF37]">8 pessoas</span>
+                  </p>
                 </div>
 
-                <ul className="space-y-4 mb-8">
-                  {plan.benefits.map((benefit, idx) => (
-                    <li key={idx} className="flex items-start gap-3">
-                      <Check className="text-amber-600 flex-shrink-0 mt-1" size={22} strokeWidth={2.5} />
-                      <span className="text-[#3E2723] text-base leading-relaxed">{benefit}</span>
-                    </li>
-                  ))}
-                </ul>
+                {/* Grid de benefícios 2x2 */}
+                <div className="grid grid-cols-2 gap-3 md:gap-4 mb-6">
+                  {plan.benefits.slice(0, 4).map((benefit, idx) => {
+                    const icons = [Clock, Shield, AlertCircle, Check];
+                    const Icon = icons[idx];
+                    const titles = [
+                      'Atendimento 24h',
+                      'Cobertura total',
+                      'Sem taxas escondidas',
+                      'Sem burocracia'
+                    ];
+                    const descriptions = [
+                      'Suporte completo a qualquer hora',
+                      'Tudo incluso para até 8 pessoas',
+                      'Valor fixo mensal',
+                      'Processo simples'
+                    ];
+                    return (
+                      <div key={idx} className="text-center">
+                        <div className="bg-amber-100 w-9 h-9 md:w-10 md:h-10 rounded-full flex items-center justify-center mx-auto mb-1.5 md:mb-2">
+                          <Icon className="text-[#D4AF37]" size={18} />
+                        </div>
+                        <h4 className="font-bold text-[#3E2723] text-xs mb-0.5 md:mb-1">
+                          {titles[idx]}
+                        </h4>
+                        <p className="text-[10px] md:text-xs text-gray-600 leading-tight px-0.5">
+                          {descriptions[idx]}
+                        </p>
+                      </div>
+                    );
+                  })}
+                </div>
 
+                {/* Botão */}
                 <button
                   onClick={() => openCheckout(plan)}
-                  className={`block w-full text-center py-4 md:py-5 rounded-full font-bold text-lg transition-all duration-300 ${
-                    plan.recommended
-                      ? 'gradient-gold text-white shadow-xl hover:shadow-2xl transform hover:scale-105'
-                      : 'bg-[#3E2723] hover:bg-[#2C1810] text-white shadow-lg hover:shadow-xl'
-                  }`}
+                  className="block w-full bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg font-bold py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mb-4 md:mb-6"
                 >
-                  {plan.cta}
+                  {plan.cta} →
                 </button>
+
+                {/* Rodapé */}
+                <p className="text-center text-xs md:text-sm text-gray-600">
+                  Sem permanência mínima • Cancele quando quiser
+                </p>
               </motion.div>
             ))}
           </div>
@@ -345,17 +392,17 @@ function App() {
       </section>
 
       {/* Seção de Garantias */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-amber-50 to-white">
+      <section className="py-12 md:py-32 bg-gradient-to-b from-amber-50 to-white">
         <div className="container mx-auto px-4">
           <motion.h2
-            className="text-4xl md:text-5xl font-serif font-bold text-center text-[#3E2723] mb-16 md:mb-20"
+            className="text-2xl md:text-5xl font-serif font-bold text-center text-[#3E2723] mb-8 md:mb-20"
             {...fadeInUp}
           >
-            Nossas Garantias de Excelência
+            Tranquilidade real quando você mais precisa
           </motion.h2>
 
           <motion.div 
-            className="grid md:grid-cols-2 gap-8 md:gap-12 max-w-5xl mx-auto"
+            className="grid grid-cols-2 gap-4 md:gap-12 max-w-5xl mx-auto"
             initial="initial"
             whileInView="whileInView"
             variants={staggerContainer}
@@ -364,16 +411,16 @@ function App() {
             {guarantees.map((item, index) => (
               <motion.div
                 key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-amber-200"
+                className="bg-white rounded-2xl p-4 md:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-amber-200"
                 variants={fadeInUp}
               >
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full gradient-gold mb-6">
-                  <item.icon className="text-white" size={32} strokeWidth={1.5} />
+                <div className="inline-flex items-center justify-center w-12 h-12 md:w-16 md:h-16 rounded-full gradient-gold mb-3 md:mb-6">
+                  <item.icon className="text-white" size={24} strokeWidth={1.5} />
                 </div>
-                <h3 className="text-2xl font-serif font-bold text-[#3E2723] mb-3">
+                <h3 className="text-base md:text-2xl font-serif font-bold text-[#3E2723] mb-2 md:mb-3">
                   {item.title}
                 </h3>
-                <p className="text-amber-900 leading-relaxed">
+                <p className="text-xs md:text-base text-amber-900 leading-relaxed">
                   {item.description}
                 </p>
               </motion.div>
@@ -402,17 +449,17 @@ function App() {
               transition={{ delay: 0.3 }}
             >
               <h2 className="text-4xl md:text-5xl font-serif font-bold text-[#3E2723] mb-6">
-                Tradição e Respeito há mais de 15 anos
+                Respeito e Tradição há mais de 15 anos
               </h2>
               <div className="w-20 h-1 gradient-gold mb-8"></div>
               <p className="text-lg md:text-xl text-amber-900 leading-relaxed mb-6">
-                Há mais de 15 anos, a <strong>Funerária Príncipe da Paz</strong> é sinônimo de respeito, dignidade e excelência na Grande Vitória.
+                A <strong>Funerária Príncipe da Paz</strong> não é apenas uma empresa, é um braço amigo na Grande Vitória.
               </p>
               <p className="text-lg text-amber-900 leading-relaxed mb-6">
-                Nossa missão é proporcionar às famílias o amparo necessário nos momentos mais delicados, com profissionalismo, humanização e toda a estrutura que você merece.
+                Nossa missão é oferecer amparo profissional e humanizado, garantindo que a despedida do seu ente querido seja uma homenagem honrosa, sem desespero financeiro.
               </p>
-              <p className="text-lg text-amber-900 leading-relaxed">
-                Acreditamos que planejar com antecedência é um ato de amor e responsabilidade. Por isso, oferecemos planos acessíveis para que você proteja quem ama sem comprometer o orçamento familiar.
+              <p className="text-lg text-amber-900 leading-relaxed font-semibold">
+                Atendemos em Vitória, Vila Velha, Serra, Cariacica e Viana.
               </p>
             </motion.div>
           </div>
@@ -461,6 +508,124 @@ function App() {
                 </p>
               </motion.div>
             ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Seção de Benefícios Premium */}
+      <section className="py-20 md:py-32 bg-amber-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16 md:mb-20"
+            {...fadeInUp}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#3E2723] mb-6">
+              O que você recebe com nossos planos
+            </h2>
+            <p className="text-xl md:text-2xl text-amber-800 font-light">
+              Proteção completa para sua família em todos os momentos
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial="initial"
+            whileInView="whileInView"
+            variants={staggerContainer}
+            viewport={{ once: true }}
+          >
+            {[
+              { icon: Clock, title: 'Atendimento 24h', desc: 'Disponível todos os dias, inclusive finais de semana e feriados' },
+              { icon: Shield, title: 'Cobertura Completa', desc: 'Velório, sepultamento, translado e documentação' },
+              { icon: Heart, title: 'Sem Burocracia', desc: 'Processo simples e rápido em momento de dor' },
+              { icon: Award, title: 'Experiência', desc: 'Mais de 15 anos atendendo com dignidade' },
+              { icon: Users, title: 'Até 8 Pessoas', desc: 'Proteja sua família inteira com um único plano' },
+              { icon: Check, title: 'Sem Surpresas', desc: 'Valor fixo, sem taxas escondidas ou aumentos inesperados' }
+            ].map((benefit, index) => (
+              <motion.div
+                key={index}
+                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+                variants={fadeInUp}
+              >
+                <benefit.icon className="text-amber-600 mb-4" size={48} />
+                <h3 className="text-2xl font-serif font-bold text-[#3E2723] mb-3">
+                  {benefit.title}
+                </h3>
+                <p className="text-amber-900 text-lg">
+                  {benefit.desc}
+                </p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Seção de Como Funciona */}
+      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-amber-50">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="text-center mb-16 md:mb-20"
+            {...fadeInUp}
+          >
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#3E2723] mb-6">
+              Como funciona
+            </h2>
+            <p className="text-xl md:text-2xl text-amber-800 font-light">
+              Contratar é simples e rápido
+            </p>
+          </motion.div>
+
+          <motion.div
+            className="grid md:grid-cols-4 gap-8 max-w-6xl mx-auto"
+            initial="initial"
+            whileInView="whileInView"
+            variants={staggerContainer}
+            viewport={{ once: true }}
+          >
+            {[
+              { icon: ClipboardList, title: 'Escolha', desc: 'Selecione o plano ideal para sua família', color: 'from-[#D4AF37] to-[#B8860B]' },
+              { icon: FileText, title: 'Preencha', desc: 'Informações básicas e contato', color: 'from-[#B8860B] to-[#D4AF37]' },
+              { icon: CheckCircle2, title: 'Confirme', desc: 'Concorde com os termos do contrato', color: 'from-[#D4AF37] to-[#B8860B]' },
+              { icon: ShieldCheck, title: 'Protegido', desc: 'Receba os boletos e aproveite a cobertura', color: 'from-[#B8860B] to-[#D4AF37]' }
+            ].map((item, index) => (
+              <motion.div
+                key={index}
+                className="relative group"
+                variants={fadeInUp}
+              >
+                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-amber-100 h-full">
+                  <div className={`bg-gradient-to-br ${item.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
+                    <item.icon size={40} strokeWidth={2.5} />
+                  </div>
+                  <h3 className="text-2xl font-bold text-[#3E2723] mb-3 font-serif">
+                    {item.title}
+                  </h3>
+                  <p className="text-amber-900 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+                {index < 3 && (
+                  <div className="hidden lg:block absolute top-1/2 -right-4 text-[#D4AF37] text-3xl transform -translate-y-1/2 z-10">
+                    →
+                  </div>
+                )}
+              </motion.div>
+            ))}
+          </motion.div>
+
+          <motion.div
+            className="text-center mt-16"
+            variants={fadeInUp}
+          >
+            <button
+              onClick={() => {
+                setSelectedPlan(plans[0]);
+                setCheckoutOpen(true);
+              }}
+              className="bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#B8860B] hover:to-[#D4AF37] text-white text-lg px-16 py-6 rounded-full font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 uppercase tracking-wider"
+            >
+              Comece Agora
+            </button>
           </motion.div>
         </div>
       </section>
