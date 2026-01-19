@@ -13,8 +13,9 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [customerData, setCustomerData] = useState(null);
+  const [loadingCep, setLoadingCep] = useState(false);
 
-  const { register, handleSubmit, formState: { errors }, watch } = useForm();
+  const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm();
 
   const formatCPF = (value) => {
     return value
@@ -31,6 +32,37 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
       .replace(/(\d{2})(\d)/, '($1) $2')
       .replace(/(\d{5})(\d)/, '$1-$2')
       .replace(/(-\d{4})\d+?$/, '$1');
+  };
+
+  const formatCEP = (value) => {
+    return value
+      .replace(/\D/g, '')
+      .replace(/(\d{5})(\d)/, '$1-$2')
+      .replace(/(-\d{3})\d+?$/, '$1');
+  };
+
+  const buscarCEP = async (cep) => {
+    const cepLimpo = cep.replace(/\D/g, '');
+    
+    if (cepLimpo.length !== 8) return;
+
+    setLoadingCep(true);
+    
+    try {
+      const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+      const data = await response.json();
+      
+      if (!data.erro) {
+        setValue('rua', data.logradouro || '');
+        setValue('bairro', data.bairro || '');
+        setValue('cidade', data.localidade || '');
+        setValue('estado', data.uf || '');
+      }
+    } catch (err) {
+      console.error('Erro ao buscar CEP:', err);
+    } finally {
+      setLoadingCep(false);
+    }
   };
 
   const onSubmitData = async (data) => {
@@ -137,7 +169,7 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
                       className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                     />
                     <input
-                      {...register('email', { required: 'Email é obrigatório' })}
+                      {...register('email')}
                       type="email"
                       placeholder="Email"
                       className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
@@ -159,41 +191,57 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
                 <div>
                   <h3 className="text-lg font-bold text-amber-900 mb-4">Endereço</h3>
                   <div className="space-y-4">
+                    <div className="relative">
+                      <input
+                        {...register('cep', {
+                          onChange: (e) => {
+                            const formatted = formatCEP(e.target.value);
+                            e.target.value = formatted;
+                            if (formatted.replace(/\D/g, '').length === 8) {
+                              buscarCEP(formatted);
+                            }
+                          }
+                        })}
+                        placeholder="CEP"
+                        maxLength="9"
+                        className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
+                      />
+                      {loadingCep && (
+                        <div className="absolute right-3 top-1/2 -translate-y-1/2">
+                          <Loader2 size={20} className="animate-spin text-amber-700" />
+                        </div>
+                      )}
+                    </div>
                     <input
-                      {...register('cep', { required: 'CEP é obrigatório' })}
-                      placeholder="CEP"
-                      className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
-                    />
-                    <input
-                      {...register('rua', { required: 'Rua é obrigatória' })}
+                      {...register('rua')}
                       placeholder="Rua"
                       className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                     />
                     <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                       <input
-                        {...register('numero', { required: 'Número é obrigatório' })}
+                        {...register('numero')}
                         placeholder="Número"
                         className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                       />
                       <input
-                        {...register('bairro', { required: 'Bairro é obrigatório' })}
+                        {...register('bairro')}
                         placeholder="Bairro"
                         className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                       />
                       <input
-                        {...register('estado', { required: 'Estado é obrigatório' })}
+                        {...register('estado')}
                         placeholder="Estado"
                         className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                       />
                     </div>
                     <input
-                      {...register('cidade', { required: 'Cidade é obrigatória' })}
+                      {...register('cidade')}
                       placeholder="Cidade"
                       className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                     />
                     <input
                       {...register('complemento')}
-                      placeholder="Complemento (opcional)"
+                      placeholder="Complemento"
                       className="w-full px-4 py-3 border-2 border-amber-200 rounded-lg focus:border-amber-600 focus:outline-none"
                     />
                   </div>
