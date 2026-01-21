@@ -19,18 +19,18 @@ import {
   CheckCircle2,
   ShieldCheck
 } from 'lucide-react';
-import CheckoutModal from './components/CheckoutModal';
+import LeadCapture from './components/LeadCapture';
 
 function App() {
   const [openFaq, setOpenFaq] = useState(null);
-  const [checkoutOpen, setCheckoutOpen] = useState(false);
+  const [leadCaptureOpen, setLeadCaptureOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState(null);
   const whatsappNumber = '5527997363659';
-  const whatsappMessage = encodeURIComponent('Olá! Gostaria de conhecer os planos da Funerária Príncipe da Paz.');
+  const whatsappMessage = encodeURIComponent('Olá! Gostaria de conhecer os planos da Funerária Príncipe da Paz');
 
-  const openCheckout = (plan) => {
+  const openLeadCapture = (plan) => {
     setSelectedPlan(plan);
-    setCheckoutOpen(true);
+    setLeadCaptureOpen(true);
   };
 
   const fadeInUp = {
@@ -239,19 +239,20 @@ function App() {
           
           <motion.button
             onClick={() => {
-              document.getElementById('planos').scrollIntoView({ behavior: 'smooth' });
+              openLeadCapture({ name: 'Explorar Planos', monthlyPrice: 'A partir de 47,90' });
             }}
-            className="bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg px-12 md:px-16 py-4 md:py-5 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full md:w-auto mb-3"
+            className="bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg px-12 md:px-16 py-4 md:py-5 rounded-full font-bold shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 w-full md:w-auto mb-3 flex items-center justify-center gap-2"
             variants={fadeInUp}
           >
-            QUERO PROTEGER MINHA FAMÍLIA AGORA
+            <MessageCircle size={20} />
+            RECEBER PROPOSTA NO WHATSAPP
           </motion.button>
           <motion.p 
             className="text-sm text-gray-600 flex items-center justify-center gap-2"
             variants={fadeInUp}
           >
             <Check size={16} className="text-green-600" />
-            Compra segura e imediata
+            Sem compromisso • Sem dados bancários
           </motion.p>
         </motion.div>
       </section>
@@ -377,10 +378,11 @@ function App() {
 
                 {/* Botão */}
                 <button
-                  onClick={() => openCheckout(plan)}
-                  className="block w-full bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg font-bold py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mb-4 md:mb-6"
+                  onClick={() => openLeadCapture(plan)}
+                  className="block w-full bg-[#D4AF37] hover:bg-[#C4A027] text-white text-base md:text-lg font-bold py-3.5 md:py-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 mb-4 md:mb-6 flex items-center justify-center gap-2"
                 >
-                  {plan.cta} →
+                  <MessageCircle size={18} />
+                  Receber Proposta →
                 </button>
 
                 {/* Rodapé */}
@@ -747,10 +749,10 @@ function App() {
         <MessageCircle size={32} strokeWidth={2} />
       </motion.a>
 
-      {/* Checkout Modal */}
-      <CheckoutModal 
-        isOpen={checkoutOpen}
-        onClose={() => setCheckoutOpen(false)}
+      {/* Lead Capture Modal */}
+      <LeadCapture 
+        isOpen={leadCaptureOpen}
+        onClose={() => setLeadCaptureOpen(false)}
         selectedPlan={selectedPlan}
       />
     </div>
