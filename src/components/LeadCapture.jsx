@@ -3,9 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Check, MessageCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 
-// Inicializar EmailJS (usar Public Key)
-// Você precisa criar uma conta em emailjs.com
-emailjs.init('YOUR_PUBLIC_KEY'); // TODO: Substituir pela sua Public Key
+// Inicializar EmailJS com sua Public Key
+emailjs.init('p1fNQjoa00Hdr855T');
 
 const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
   const [loading, setLoading] = useState(false);
@@ -54,10 +53,10 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
       // Enviar email via EmailJS
       try {
         await emailjs.send(
-          'YOUR_SERVICE_ID', // TODO: Substituir pelo seu Service ID
-          'YOUR_TEMPLATE_ID', // TODO: Substituir pelo seu Template ID
+          'service_ofa3roa',
+          'template_i2qbn9h',
           {
-            to_email: 'seu-email@funeraria.com', // TODO: Seu email
+            to_email: 'assistenciaprincipadapaz@gmail.com',
             nome: formData.nome,
             whatsapp: formData.whatsapp,
             whatsapp_limpo: whatsappLimpo,
