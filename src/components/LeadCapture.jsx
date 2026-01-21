@@ -15,8 +15,7 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
   const formatWhatsApp = (value) => {
     const cleaned = value.replace(/\D/g, '');
     if (cleaned.length <= 2) return cleaned;
-    if (cleaned.length <= 7) return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
-    return `(${cleaned.slice(0, 2)}) 9${cleaned.slice(2, 7)}-${cleaned.slice(7, 11)}`;
+    return `(${cleaned.slice(0, 2)}) ${cleaned.slice(2)}`;
   };
 
   const handleWhatsAppChange = (e) => {
@@ -38,8 +37,8 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
       }
 
       const whatsappLimpo = formData.whatsapp.replace(/\D/g, '');
-      if (whatsappLimpo.length !== 11) {
-        setError('WhatsApp deve ter 11 dígitos (DD + 9 + 8 dígitos).');
+      if (whatsappLimpo.length < 10) {
+        setError('WhatsApp deve ter pelo menos 10 dígitos.');
         setLoading(false);
         return;
       }
