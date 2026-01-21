@@ -5,7 +5,9 @@ import {
   X, 
   Check,
   Loader2,
-  AlertCircle
+  AlertCircle,
+  FileText,
+  CheckCircle2
 } from 'lucide-react';
 
 const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
@@ -14,6 +16,9 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
   const [error, setError] = useState('');
   const [customerData, setCustomerData] = useState(null);
   const [loadingCep, setLoadingCep] = useState(false);
+  const [assinaturaDigital, setAssinaturaDigital] = useState('');
+  const [aceitouContrato, setAceitouContrato] = useState(false);
+  const [dataAssinatura, setDataAssinatura] = useState(null);
 
   const { register, handleSubmit, formState: { errors }, watch, setValue } = useForm();
 
@@ -72,14 +77,37 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
     try {
       console.log('Dados recebidos:', data);
 
-      if (!data.concordouContrato) {
-        setError('Você deve concordar com o contrato para continuar.');
+      // Validação da assinatura digital
+      if (!aceitouContrato || !assinaturaDigital.trim()) {
+        setError('Você deve assinar digitalmente o contrato para continuar.');
         setLoading(false);
         return;
       }
 
+      // Verifica se a assinatura corresponde ao nome
+      const nomeCompleto = data.name.toLowerCase().trim();
+      const assinatura = assinaturaDigital.toLowerCase().trim();
+      
+      if (nomeCompleto !== assinatura) {
+        setError('A assinatura digital deve ser idêntica ao seu nome completo.');
+        setLoading(false);
+        return;
+      }
+
+      // Registra data/hora da assinatura
+      const dataHora = new Date().toLocaleString('pt-BR', {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      });
+      setDataAssinatura(dataHora);
+
       // Apenas armazena os dados localmente
-      setCustomerData(data);
+      setCustomerData({
+        ...data,
+        assinaturaDigital,
+        dataAssinatura: dataHora,
+        ipAssinatura: 'Registrado' // Placeholder
+      });
       setStep(2);
     } catch (err) {
       console.error('Erro:', err);
@@ -97,6 +125,9 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
     setStep(1);
     setError('');
     setCustomerData(null);
+    setAssinaturaDigital('');
+    setAceitouContrato(false);
+    setDataAssinatura(null);
     onClose();
   };
 
@@ -248,27 +279,96 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
                 </div>
 
                 {/* Contrato */}
-                <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6">
-                  <label className="flex items-start gap-4 cursor-pointer">
+                <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-6 space-y-4">
+                  <div className="flex items-center gap-3 mb-4">
+                    <FileText className="text-amber-700" size={24} />
+                    <h3 className="font-bold text-amber-900 text-lg">Contrato de Prestação de Serviços</h3>
+                  </div>
+                  
+                  {/* Área do Contrato - Scroll */}
+                  <div className="bg-white border-2 border-amber-300 rounded-lg p-4 max-h-40 overflow-y-auto">
+                    <p className="text-xs text-gray-700 leading-relaxed mb-2">
+                      <strong>CONTRATO DE PRESTAÇÃO DE SERVIÇOS FUNERÁRIOS</strong>
+                    </p>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-2">
+                      Pelo presente instrumento, de um lado <strong>FUNERÁRIA PRÍNCIPE DA PAZ</strong>, 
+                      doravante denominada CONTRATADA, e de outro lado o CONTRATANTE qualificado neste formulário, 
+                      têm entre si justo e acordado o seguinte:
+                    </p>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-2">
+                      <strong>CLÁUSULA 1ª - DO OBJETO:</strong> O presente contrato tem por objeto a prestação 
+                      de serviços funerários completos, incluindo assistência funeral 24 horas, fornecimento 
+                      de urna, transporte, preparação do corpo, flores, véu, registro de óbito e demais 
+                      serviços conforme plano contratado.
+                    </p>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-2">
+                      <strong>CLÁUSULA 2ª - DO PAGAMENTO:</strong> O CONTRATANTE compromete-se ao pagamento 
+                      mensal conforme o plano escolhido, sendo o pagamento realizado através de boleto 
+                      bancário enviado via WhatsApp.
+                    </p>
+                    <p className="text-xs text-gray-600 leading-relaxed mb-2">
+                      <strong>CLÁUSULA 3ª - DA VIGÊNCIA:</strong> O contrato entra em vigor na data da 
+                      assinatura e tem prazo indeterminado, podendo ser cancelado a qualquer momento sem 
+                      fidelidade ou multa.
+                    </p>
+                    <p className="text-xs text-gray-600 leading-relaxed">
+                      <strong>CLÁUSULA 4ª - DAS CONDIÇÕES GERAIS:</strong> O CONTRATANTE declara ter lido 
+                      e compreendido todas as cláusulas deste contrato, concordando integralmente com seus termos.
+                    </p>
+                  </div>
+
+                  {/* Checkbox de Aceite */}
+                  <label className="flex items-start gap-3 cursor-pointer">
                     <input
-                      {...register('concordouContrato')}
                       type="checkbox"
-                      className="mt-1 w-6 h-6 accent-amber-700"
+                      checked={aceitouContrato}
+                      onChange={(e) => setAceitouContrato(e.target.checked)}
+                      className="mt-1 w-5 h-5 accent-amber-700"
                     />
                     <span className="text-sm text-amber-900 leading-relaxed">
-                      Li e concordo com os{' '}
-                      <a
-                        href="/contrato-servicos.pdf"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-blue-600 underline hover:text-blue-800 font-semibold"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        Termos do Contrato de Prestação de Serviços
-                      </a>
-                      {' '}e me comprometo a realizar os pagamentos conforme as condições estabelecidas.
+                      Declaro que li e compreendi todas as cláusulas do{' '}
+                      <strong>Contrato de Prestação de Serviços Funerários</strong> acima, 
+                      e concordo integralmente com seus termos e condições.
                     </span>
                   </label>
+
+                  {/* Campo de Assinatura Digital */}
+                  {aceitouContrato && (
+                    <motion.div
+                      initial={{ opacity: 0, height: 0 }}
+                      animate={{ opacity: 1, height: 'auto' }}
+                      className="space-y-3"
+                    >
+                      <div className="bg-white border-2 border-amber-400 rounded-lg p-4">
+                        <label className="block mb-2">
+                          <span className="text-sm font-bold text-amber-900 flex items-center gap-2">
+                            <CheckCircle2 size={18} />
+                            Assinatura Digital (Digite seu nome completo)
+                          </span>
+                        </label>
+                        <input
+                          type="text"
+                          value={assinaturaDigital}
+                          onChange={(e) => setAssinaturaDigital(e.target.value)}
+                          placeholder="Digite seu nome completo exatamente como informado acima"
+                          className="w-full px-4 py-3 border-2 border-amber-300 rounded-lg focus:border-amber-600 focus:outline-none font-serif text-lg italic"
+                          style={{ fontFamily: "'Brush Script MT', cursive" }}
+                        />
+                        <p className="text-xs text-amber-700 mt-2">
+                          ⚠️ A assinatura digital deve ser <strong>idêntica</strong> ao seu nome completo informado no formulário.
+                        </p>
+                      </div>
+                      
+                      {assinaturaDigital && (
+                        <div className="bg-green-50 border-2 border-green-300 rounded-lg p-3 flex items-center gap-2">
+                          <CheckCircle2 className="text-green-700" size={20} />
+                          <p className="text-sm text-green-800">
+                            <strong>Assinatura registrada:</strong> {assinaturaDigital}
+                          </p>
+                        </div>
+                      )}
+                    </motion.div>
+                  )}
                 </div>
 
                 {/* Botões */}
@@ -317,6 +417,19 @@ const CheckoutModal = ({ isOpen, onClose, selectedPlan }) => {
                   <h3 className="font-bold text-amber-900 mb-4">Plano Selecionado:</h3>
                   <p className="text-lg font-bold">{selectedPlan.name}</p>
                   <p className="text-amber-900">R$ {selectedPlan.monthlyPrice}/mês</p>
+                </div>
+
+                {/* Confirmação de Assinatura Digital */}
+                <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <CheckCircle2 className="text-green-700" size={24} />
+                    <h3 className="font-bold text-green-900">Assinatura Digital Registrada</h3>
+                  </div>
+                  <div className="space-y-2 text-sm text-green-800">
+                    <p><span className="font-semibold">Assinante:</span> {customerData.assinaturaDigital}</p>
+                    <p><span className="font-semibold">Data/Hora:</span> {customerData.dataAssinatura}</p>
+                    <p><span className="font-semibold">IP:</span> {customerData.ipAssinatura}</p>
+                  </div>
                 </div>
 
                 <div className="bg-green-50 border-2 border-green-200 rounded-lg p-6">
