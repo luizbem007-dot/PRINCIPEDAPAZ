@@ -1,6 +1,11 @@
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Loader2, Check, MessageCircle } from 'lucide-react';
+import emailjs from '@emailjs/browser';
+
+// Inicializar EmailJS (usar Public Key)
+// Você precisa criar uma conta em emailjs.com
+emailjs.init('YOUR_PUBLIC_KEY'); // TODO: Substituir pela sua Public Key
 
 const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
   const [loading, setLoading] = useState(false);
@@ -46,41 +51,45 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
         return;
       }
 
-      // Simula delay de envio
-      await new Promise(resolve => setTimeout(resolve, 1500));
+      // Enviar email via EmailJS
+      try {
+        await emailjs.send(
+          'YOUR_SERVICE_ID', // TODO: Substituir pelo seu Service ID
+          'YOUR_TEMPLATE_ID', // TODO: Substituir pelo seu Template ID
+          {
+            to_email: 'seu-email@funeraria.com', // TODO: Seu email
+            nome: formData.nome,
+            whatsapp: formData.whatsapp,
+            whatsapp_limpo: whatsappLimpo,
+            cidade: formData.cidade,
+            plano: selectedPlan?.name || 'Não especificado',
+            valor: selectedPlan?.monthlyPrice || 'A definir',
+            data_hora: new Date().toLocaleString('pt-BR'),
+          }
+        );
+        console.log('Email enviado com sucesso!');
+      } catch (emailError) {
+        console.error('Erro ao enviar email:', emailError);
+        // Continua mesmo se o email falhar (não interrompe o fluxo)
+      }
 
-      // TODO: Integração com API backend para:
-      // 1. Enviar mensagem WhatsApp via Twilio/Gupshup
-      // 2. Enviar email para gerente
-      // 3. Salvar lead em banco de dados
-
-      // Dados que seriam enviados
-      const leadData = {
-        nome: formData.nome,
-        whatsapp: whatsappLimpo,
-        cidade: formData.cidade,
-        plano: selectedPlan?.name,
-        valor: selectedPlan?.monthlyPrice,
-        timestamp: new Date().toISOString()
-      };
-
-      console.log('Lead capturado e pronto para envio:', leadData);
-
-      // IMPORTANTE: Para produção, integrar com:
-      // POST /api/leads ou webhooks para:
-      // - Chamar API WhatsApp (Twilio/Gupshup/Evolution)
-      // - Enviar email para gerente
-      // - Salvar em database
+      // Redirecionar para WhatsApp com mensagem pré-formatada
+      const mensagem = `Olá! Sou ${formData.nome}, sou de ${formData.cidade} e acabei de preencher o formulário no site. Gostaria de receber a proposta do plano ${selectedPlan?.name || 'funerário'}.`;
+      const whatsappURL = `https://wa.me/5527997363659?text=${encodeURIComponent(mensagem)}`;
 
       setSuccess(true);
+      
+      // Aguarda um pouco e depois redireciona
       setTimeout(() => {
+        window.open(whatsappURL, '_blank');
         setFormData({ nome: '', whatsapp: '', cidade: '' });
         setSuccess(false);
         onClose();
-      }, 3000);
+      }, 2000);
+
     } catch (err) {
       console.error('Erro:', err);
-      setError('Erro ao enviar. Tente novamente.');
+      setError('Erro ao processar. Tente novamente.');
     } finally {
       setLoading(false);
     }
@@ -226,19 +235,19 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
 
                 <div>
                   <h3 className="text-2xl font-serif font-bold text-green-700 mb-2">
-                    Proposta Recebida!
+                    Tudo Pronto!
                   </h3>
                   <p className="text-gray-700">
-                    Nossa equipe vai ligar em <strong>5 minutos</strong> para {formData.nome}
+                    Redirecionando você para o <strong>WhatsApp</strong>...
                   </p>
                   <p className="text-sm text-gray-600 mt-2">
-                    WhatsApp: {formData.whatsapp}
+                    Você receberá resposta em <strong>até 5 minutos</strong>
                   </p>
                 </div>
 
                 <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-4">
                   <p className="text-sm text-amber-900 font-semibold">
-                    Já vamos atualizar por lá com a melhor proposta! 📲
+                    📲 Nossa equipe está aguardando no WhatsApp
                   </p>
                 </div>
               </div>
