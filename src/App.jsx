@@ -516,124 +516,6 @@ function App() {
         </div>
       </section>
 
-      {/* Seção de Benefícios Premium */}
-      <section className="py-20 md:py-32 bg-amber-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16 md:mb-20"
-            {...fadeInUp}
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#3E2723] mb-6">
-              O que você recebe com nossos planos
-            </h2>
-            <p className="text-xl md:text-2xl text-amber-800 font-light">
-              Proteção completa para sua família em todos os momentos
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto"
-            initial="initial"
-            whileInView="whileInView"
-            variants={staggerContainer}
-            viewport={{ once: true }}
-          >
-            {[
-              { icon: Clock, title: 'Atendimento 24h', desc: 'Disponível todos os dias, inclusive finais de semana e feriados' },
-              { icon: Shield, title: 'Cobertura Completa', desc: 'Velório, sepultamento, translado e documentação' },
-              { icon: Heart, title: 'Sem Burocracia', desc: 'Processo simples e rápido em momento de dor' },
-              { icon: Award, title: 'Experiência', desc: 'Mais de 15 anos atendendo com dignidade' },
-              { icon: Users, title: 'Até 8 Pessoas', desc: 'Proteja sua família inteira com um único plano' },
-              { icon: Check, title: 'Sem Surpresas', desc: 'Valor fixo, sem taxas escondidas ou aumentos inesperados' }
-            ].map((benefit, index) => (
-              <motion.div
-                key={index}
-                className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
-                variants={fadeInUp}
-              >
-                <benefit.icon className="text-amber-600 mb-4" size={48} />
-                <h3 className="text-2xl font-serif font-bold text-[#3E2723] mb-3">
-                  {benefit.title}
-                </h3>
-                <p className="text-amber-900 text-lg">
-                  {benefit.desc}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Seção de Como Funciona */}
-      <section className="py-20 md:py-32 bg-gradient-to-b from-white to-amber-50">
-        <div className="container mx-auto px-4">
-          <motion.div
-            className="text-center mb-16 md:mb-20"
-            {...fadeInUp}
-          >
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-[#3E2723] mb-6">
-              Como funciona
-            </h2>
-            <p className="text-xl md:text-2xl text-amber-800 font-light">
-              Contratar é simples e rápido
-            </p>
-          </motion.div>
-
-          <motion.div
-            className="grid grid-cols-2 gap-4 md:gap-8 max-w-4xl mx-auto"
-            initial="initial"
-            whileInView="whileInView"
-            variants={staggerContainer}
-            viewport={{ once: true }}
-          >
-            {[
-              { icon: ClipboardList, title: 'Escolha', desc: 'Selecione o plano ideal para sua família', color: 'from-[#D4AF37] to-[#B8860B]' },
-              { icon: FileText, title: 'Preencha', desc: 'Informações básicas e contato', color: 'from-[#B8860B] to-[#D4AF37]' },
-              { icon: CheckCircle2, title: 'Confirme', desc: 'Concorde com os termos do contrato', color: 'from-[#D4AF37] to-[#B8860B]' },
-              { icon: ShieldCheck, title: 'Protegido', desc: 'Receba os boletos e aproveite a cobertura', color: 'from-[#B8860B] to-[#D4AF37]' }
-            ].map((item, index) => (
-              <motion.div
-                key={index}
-                className="relative group"
-                variants={fadeInUp}
-              >
-                <div className="bg-white rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 border-2 border-amber-100 h-full">
-                  <div className={`bg-gradient-to-br ${item.color} text-white w-20 h-20 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:scale-110 transition-transform duration-300`}>
-                    <item.icon size={40} strokeWidth={2.5} />
-                  </div>
-                  <h3 className="text-2xl font-bold text-[#3E2723] mb-3 font-serif">
-                    {item.title}
-                  </h3>
-                  <p className="text-amber-900 leading-relaxed">
-                    {item.desc}
-                  </p>
-                </div>
-                {index < 3 && (
-                  <div className="hidden lg:block absolute top-1/2 -right-4 text-[#D4AF37] text-3xl transform -translate-y-1/2 z-10">
-                    →
-                  </div>
-                )}
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            className="text-center mt-16"
-            variants={fadeInUp}
-          >
-            <button
-              onClick={() => {
-                setSelectedPlan(plans[0]);
-                setCheckoutOpen(true);
-              }}
-              className="bg-gradient-to-r from-[#D4AF37] to-[#B8860B] hover:from-[#B8860B] hover:to-[#D4AF37] text-white text-lg px-16 py-6 rounded-full font-bold shadow-xl hover:shadow-2xl transition-all duration-300 transform hover:scale-105 uppercase tracking-wider"
-            >
-              Comece Agora
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
       {/* FAQ */}
       <section className="py-20 md:py-32 bg-white">
         <div className="container mx-auto px-4 max-w-4xl">
@@ -685,6 +567,78 @@ function App() {
               </motion.div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Seção de Endereço */}
+      <section className="py-16 md:py-24 bg-gradient-to-b from-amber-50 to-white">
+        <div className="container mx-auto px-4">
+          <motion.div
+            className="max-w-4xl mx-auto"
+            {...fadeInUp}
+          >
+            <h2 className="text-3xl md:text-5xl font-serif font-bold text-center text-[#3E2723] mb-12">
+              Visite nossa sede
+            </h2>
+            
+            <div className="bg-white rounded-2xl shadow-xl overflow-hidden border-2 border-amber-200">
+              <div className="grid md:grid-cols-2 gap-0">
+                {/* Informações */}
+                <div className="p-8 md:p-12 bg-gradient-to-br from-amber-50 to-white">
+                  <div className="space-y-6">
+                    <div>
+                      <h3 className="font-bold text-xl text-[#3E2723] mb-2">📍 Endereço</h3>
+                      <p className="text-gray-700 leading-relaxed">
+                        R. Belarmino Freire de Jesus, 175<br />
+                        Vila Capixaba, Cariacica - ES<br />
+                        CEP: 29146-560
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-bold text-xl text-[#3E2723] mb-2">📞 Contato</h3>
+                      <p className="text-gray-700">
+                        <a href="tel:+5527997363659" className="hover:text-[#D4AF37] transition-colors">
+                          (27) 99736-3659
+                        </a>
+                      </p>
+                    </div>
+                    
+                    <div>
+                      <h3 className="font-bold text-xl text-[#3E2723] mb-2">🕐 Horário</h3>
+                      <p className="text-gray-700">
+                        Atendimento 24 horas<br />
+                        Todos os dias da semana
+                      </p>
+                    </div>
+                    
+                    <a
+                      href="https://maps.google.com/?q=R.+Belarmino+Freire+de+Jesus,+175,+Vila+Capixaba,+Cariacica+-+ES"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-block mt-4 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white px-8 py-3 rounded-full font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
+                    >
+                      Ver no Google Maps →
+                    </a>
+                  </div>
+                </div>
+                
+                {/* Mapa */}
+                <div className="h-80 md:h-full min-h-[400px]">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3741.9!2d-40.4!3d-20.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDE4JzAwLjAiUyA0MMKwMjQnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    title="Localização Funerária Príncipe da Paz"
+                  ></iframe>
+                </div>
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
