@@ -12,6 +12,9 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
   const [formData, setFormData] = useState({ nome: '', whatsapp: '', cidade: '' });
   const [error, setError] = useState('');
 
+  // Garante que o preço aparece mesmo quando o plano só tem a prop "price"
+  const planPrice = selectedPlan?.monthlyPrice ?? selectedPlan?.price;
+
   const formatWhatsApp = (value) => {
     const cleaned = value.replace(/\D/g, '');
     if (cleaned.length <= 2) return cleaned;
@@ -135,7 +138,11 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
                   <div className="bg-amber-50 border-2 border-amber-200 rounded-lg p-3 mb-6">
                     <p className="text-xs text-amber-700 font-semibold">Seu Interesse:</p>
                     <p className="text-lg font-bold text-amber-900">{selectedPlan.name}</p>
-                    <p className="text-sm text-amber-800">R$ {selectedPlan.monthlyPrice}/mês</p>
+                    {planPrice ? (
+                      <p className="text-sm text-amber-800">R$ {planPrice}/mês</p>
+                    ) : (
+                      <p className="text-sm text-amber-800">Vamos confirmar o valor na ligação</p>
+                    )}
                   </div>
                 )}
 
