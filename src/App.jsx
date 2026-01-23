@@ -74,7 +74,7 @@ function App() {
       name: 'Plano Família',
       subtitle: 'O Econômico',
       price: '47,90',
-      description: 'Proteção essencial para o núcleo familiar.',
+      description: 'Proteção essencial para o seu núcleo familiar. Cobertura para',
       benefits: [
         '👨‍👩‍👧‍👦 Quem participa: Você + Cônjuge + Filhos + Pais',
         '⛔ Regra de Idade: Todos devem ter até 70 anos na contratação',
@@ -91,7 +91,7 @@ function App() {
       name: 'Plano Premium',
       subtitle: 'O Sem Limites 👑',
       price: '67,90',
-      description: 'Liberdade total para escolher quem proteger.',
+      description: 'Liberdade total para incluir quem você quiser. Escolha',
       highlight: '',
       benefits: [
         '👑 Quem participa: Qualquer pessoa (Sogros, Tios, Vizinhos, Amigos)',
