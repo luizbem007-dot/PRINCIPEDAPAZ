@@ -589,9 +589,9 @@ function App() {
                     <div>
                       <h3 className="font-bold text-xl text-[#3E2723] mb-2">📍 Endereço</h3>
                       <p className="text-gray-700 leading-relaxed">
-                        R. Belarmino Freire de Jesus, 175<br />
-                        Vila Capixaba, Cariacica - ES<br />
-                        CEP: 29146-560
+                        R. Belarmino Freire Assis, 10<br />
+                        Campo Grande, Cariacica - ES<br />
+                        CEP: 29146-420
                       </p>
                     </div>
                     
@@ -613,7 +613,7 @@ function App() {
                     </div>
                     
                     <a
-                      href="https://maps.google.com/?q=R.+Belarmino+Freire+de+Jesus,+175,+Vila+Capixaba,+Cariacica+-+ES"
+                      href="https://maps.google.com/?q=R.+Belarmino+Freire+Assis,+10,+Campo+Grande,+Cariacica+-+ES,+29146-420"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-block mt-4 bg-gradient-to-r from-[#D4AF37] to-[#B8860B] text-white px-8 py-3 rounded-full font-bold hover:shadow-lg transition-all duration-300 transform hover:scale-105"
@@ -626,7 +626,7 @@ function App() {
                 {/* Mapa */}
                 <div className="h-80 md:h-full min-h-[400px]">
                   <iframe
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3741.9!2d-40.4!3d-20.3!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDE4JzAwLjAiUyA0MMKwMjQnMDAuMCJX!5e0!3m2!1spt-BR!2sbr!4v1234567890"
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.3688953127894!2d-40.41835892374746!3d-20.289634681189537!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjDCsDE3JzIyLjciUyA0MMKwMjQnNTguNyJX!5e0!3m2!1spt-BR!2sbr!4v1737678000000"
                     width="100%"
                     height="100%"
                     style={{ border: 0 }}
