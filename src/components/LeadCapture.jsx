@@ -122,7 +122,7 @@ const LeadCapture = ({ isOpen, onClose, selectedPlan }) => {
                       Receber Proposta
                     </h2>
                     <p className="text-sm text-gray-600 mt-1">
-                      Nossa equipe liga em 5 minutos
+                      Respondemos pelo WhatsApp em poucos minutos
                     </p>
                   </div>
                   <button
