@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plantão Funerário 24h - Atendimento imediato para Funerária Príncipe da Paz">
+    <meta name="description" content="Plantão Funerário 24h - Atendimento imediato para Funerária Príncipe da Paz. Ligue agora.">
     <title>Plantão Funerário 24h - Atendimento Imediato</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
@@ -17,7 +17,8 @@
         html, body {
             height: 100%;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-            color: #3E2723;
+            color: #F3F4F6;
+            background-color: #111827;
             overflow-x: hidden;
         }
 
@@ -40,7 +41,7 @@
             overflow: hidden;
         }
 
-        /* Background Image */
+        /* Background subtle texture */
         .hero::before {
             content: '';
             position: absolute;
@@ -48,11 +49,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2400');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            opacity: 0.15;
+            background: radial-gradient(ellipse at 50% 0%, rgba(37, 211, 102, 0.04) 0%, transparent 60%);
             z-index: 1;
         }
 
@@ -64,7 +61,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(135deg, rgba(245, 240, 232, 0.95) 0%, rgba(255, 250, 245, 0.95) 100%);
+            background: linear-gradient(180deg, #111827 0%, #0f1623 50%, #111827 100%);
             z-index: 2;
         }
 
@@ -95,7 +92,7 @@
         }
 
         .contact-btn {
-            background: #D4AF37;
+            background: #25D366;
             color: white;
             padding: 12px 28px;
             border-radius: 25px;
@@ -105,12 +102,12 @@
             cursor: pointer;
             text-decoration: none;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
         }
 
         .contact-btn:hover {
-            background: #C4A027;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            background: #20b858;
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
             transform: translateY(-2px);
         }
 
@@ -125,32 +122,32 @@
 
         .hero-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 8vw, 5rem);
+            font-size: clamp(2rem, 8vw, 4.5rem);
             font-weight: 700;
             line-height: 1.2;
-            color: #2C2C2C;
+            color: #F3F4F6;
             margin-bottom: 20px;
             letter-spacing: -1px;
         }
 
         .hero-title .highlight {
-            color: #D4AF37;
+            color: #C9A84C;
             font-weight: 900;
         }
 
         .hero-subtitle {
             font-size: clamp(1rem, 2.5vw, 1.25rem);
-            line-height: 1.6;
-            color: #5C5C5C;
+            line-height: 1.7;
+            color: #9CA3AF;
             margin-bottom: 40px;
             max-width: 700px;
             margin-left: auto;
             margin-right: auto;
         }
 
-        .hero-subtitle .highlight {
-            color: #D4AF37;
-            font-weight: 700;
+        .hero-subtitle strong {
+            color: #D1D5DB;
+            font-weight: 600;
         }
 
         /* CTA Button */
@@ -159,26 +156,26 @@
             align-items: center;
             justify-content: center;
             gap: 12px;
-            background: #D4AF37;
+            background: #25D366;
             color: white;
-            padding: 18px 40px;
-            border-radius: 30px;
+            padding: 20px 44px;
+            border-radius: 32px;
             border: none;
             font-weight: 700;
-            font-size: 1.1rem;
+            font-size: 1.15rem;
             cursor: pointer;
             text-decoration: none;
             text-transform: uppercase;
             letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+            box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
             margin: 0 auto 20px;
-            display: inline-flex;
+            animation: pulse-cta 2s ease-in-out infinite;
         }
 
         .cta-primary:hover {
-            background: #C4A027;
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.45);
+            background: #20b858;
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.5);
             transform: translateY(-3px);
         }
 
@@ -186,66 +183,97 @@
             transform: translateY(-1px);
         }
 
-        .whatsapp-icon {
-            width: 20px;
-            height: 20px;
+        @keyframes pulse-cta {
+            0%, 100% {
+                box-shadow: 0 8px 30px rgba(37, 211, 102, 0.35);
+            }
+            50% {
+                box-shadow: 0 8px 50px rgba(37, 211, 102, 0.55);
+            }
         }
 
-        /* Security Message */
-        .security-message {
+        .whatsapp-icon {
+            width: 24px;
+            height: 24px;
+            flex-shrink: 0;
+        }
+
+        /* Trust Badges */
+        .trust-badges {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
-            font-size: 0.95rem;
-            color: #666;
-            margin-top: 10px;
+            gap: 16px;
+            flex-wrap: wrap;
+            font-size: 0.9rem;
+            color: #9CA3AF;
+            margin-top: 16px;
         }
 
-        .security-message svg {
-            width: 16px;
-            height: 16px;
-            color: #4CAF50;
+        .trust-badges span {
+            display: flex;
+            align-items: center;
+            gap: 4px;
         }
 
+        .trust-badges .check {
+            color: #25D366;
+            font-weight: 700;
+        }
+
+        .badge-divider {
+            width: 4px;
+            height: 4px;
+            background: #4B5563;
+            border-radius: 50%;
+        }
+
+        /* Floating Button */
         .floating-button {
             position: fixed;
             bottom: 30px;
             right: 30px;
-            width: 60px;
-            height: 60px;
-            background: #D4AF37;
+            width: 64px;
+            height: 64px;
+            background: #25D366;
             border-radius: 50%;
             display: flex;
             align-items: center;
             justify-content: center;
             cursor: pointer;
-            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
             text-decoration: none;
             transition: all 0.3s ease;
             z-index: 40;
-            animation: pulse-button 2s infinite;
+            animation: pulse-fab 2s infinite;
         }
 
         .floating-button:hover {
-            background: #C4A027;
+            background: #20b858;
             transform: scale(1.1);
-            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+            box-shadow: 0 12px 40px rgba(37, 211, 102, 0.6);
         }
 
-        @keyframes pulse-button {
+        @keyframes pulse-fab {
             0%, 100% {
-                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+                box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
             }
             50% {
-                box-shadow: 0 8px 35px rgba(212, 175, 55, 0.6);
+                box-shadow: 0 8px 45px rgba(37, 211, 102, 0.7);
             }
         }
 
         .floating-button svg {
-            width: 32px;
-            height: 32px;
-            color: white;
+            width: 34px;
+            height: 34px;
+        }
+
+        /* Divider line */
+        .divider {
+            width: 60px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #C9A84C, transparent);
+            margin: 0 auto 24px;
         }
 
         /* Responsividade */
@@ -277,20 +305,20 @@
             }
 
             .cta-primary {
-                padding: 16px 32px;
+                padding: 18px 34px;
                 font-size: 1rem;
             }
 
             .floating-button {
-                width: 50px;
-                height: 50px;
+                width: 56px;
+                height: 56px;
                 bottom: 20px;
                 right: 20px;
             }
 
             .floating-button svg {
-                width: 28px;
-                height: 28px;
+                width: 30px;
+                height: 30px;
             }
         }
 
@@ -323,25 +351,31 @@
             }
 
             .cta-primary {
-                padding: 14px 28px;
+                padding: 16px 28px;
                 font-size: 0.95rem;
-                gap: 8px;
+                gap: 10px;
             }
 
             .whatsapp-icon {
-                width: 18px;
-                height: 18px;
+                width: 20px;
+                height: 20px;
             }
 
-            .security-message {
-                font-size: 0.85rem;
+            .trust-badges {
+                font-size: 0.8rem;
+                gap: 8px;
             }
 
             .floating-button {
-                width: 50px;
-                height: 50px;
+                width: 54px;
+                height: 54px;
                 bottom: 16px;
                 right: 16px;
+            }
+
+            .floating-button svg {
+                width: 28px;
+                height: 28px;
             }
         }
     </style>
@@ -353,46 +387,53 @@
         <div class="hero-header">
             <div class="logo-header">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="50" height="50">
-                    <circle cx="100" cy="100" r="95" fill="none" stroke="#D4AF37" stroke-width="3"/>
-                    <text x="100" y="110" font-family="Playfair Display, serif" font-size="60" font-weight="700" text-anchor="middle" fill="#D4AF37">P</text>
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#C9A84C" stroke-width="2.5"/>
+                    <text x="100" y="115" font-family="Playfair Display, serif" font-size="60" font-weight="700" text-anchor="middle" fill="#C9A84C">P</text>
                 </svg>
             </div>
-            <a href="#" class="contact-btn" onclick="document.querySelector('.floating-button').click(); return false;">
+            <a href="https://wa.me/5527997363659" target="_blank" rel="noopener noreferrer" class="contact-btn">
                 Contato
             </a>
         </div>
 
         <!-- Content -->
         <div class="hero-content">
+            <div class="divider"></div>
+
             <h1 class="hero-title">
                 Plantão Funerário 24h:<br>
                 <span class="highlight">Atendimento Imediato</span>
             </h1>
 
             <p class="hero-subtitle">
-                Perdeu um ente querido? <span class="highlight">Não se preocupe com a burocracia</span>. Nossa equipe cuida de tudo para você com o máximo respeito.
+                Perdeu um ente querido? <strong>Não se preocupe com a burocracia.</strong><br>
+                Nossa equipe cuida de toda a liberação e documentação com o máximo respeito.
             </p>
 
             <a href="https://wa.me/5527997363659" target="_blank" rel="noopener noreferrer" class="cta-primary">
-                <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.844 1.159l-.345.215-3.559-.93 1.005 3.902.235.36a9.964 9.964 0 001.516 3.318c.726.906 1.598 1.657 2.588 2.176 1.02.525 2.075.788 3.156.788.981 0 1.946-.193 2.868-.56l.36-.135 3.701.96-.989-3.65.108-.345a9.946 9.946 0 00.783-3.127 10.019 10.019 0 00-1.073-3.565 9.948 9.948 0 00-2.868-3.06 10.037 10.037 0 00-3.542-1.181zM2.6 23.128l5.893-1.731L.51 10.25z"/>
+                <!-- WhatsApp Icon -->
+                <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+                    <path d="M16 31C23.732 31 30 24.732 30 17C30 9.268 23.732 3 16 3C8.268 3 2 9.268 2 17C2 19.511 2.661 21.867 3.818 23.905L2 31L9.315 29.304C11.301 30.385 13.579 31 16 31Z" fill="white" fill-opacity="0.15"/>
+                    <path d="M12.5 9.5C12.167 8.831 11.657 8.891 11.141 8.891C10.219 8.891 8.781 9.995 8.781 12.05C8.781 13.734 9.523 15.578 12.024 18.336C14.438 20.998 17.609 22.375 20.242 22.328C22.875 22.281 23.417 20.015 23.417 19.25C23.417 18.911 23.206 18.742 23.061 18.696C22.164 18.265 20.509 17.463 20.133 17.312C19.756 17.162 19.56 17.366 19.438 17.477C19.096 17.802 18.419 18.761 18.188 18.977C17.956 19.192 17.61 19.083 17.467 19.002C16.937 18.789 15.503 18.151 14.36 17.043C12.945 15.672 12.862 15.2 12.596 14.78C12.383 14.444 12.539 14.238 12.617 14.148C12.922 13.797 13.343 13.254 13.531 12.984C13.72 12.715 13.57 12.305 13.48 12.05C13.094 10.953 12.766 10.035 12.5 9.5Z" fill="white"/>
                 </svg>
                 LIGAR AGORA - (27) 99736-3659
             </a>
 
-            <div class="security-message">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
-                </svg>
-                Sem compromisso • Sem dados bancários
+            <div class="trust-badges">
+                <span><span class="check">✓</span> Frota Própria</span>
+                <span class="badge-divider"></span>
+                <span><span class="check">✓</span> Atendimento Humanizado</span>
+                <span class="badge-divider"></span>
+                <span><span class="check">✓</span> Resolvemos tudo</span>
             </div>
         </div>
     </section>
 
-    <!-- Floating Button -->
+    <!-- Floating WhatsApp Button -->
     <a href="https://wa.me/5527997363659" target="_blank" rel="noopener noreferrer" class="floating-button" title="Fale conosco pelo WhatsApp">
-        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.844 1.159l-.345.215-3.559-.93 1.005 3.902.235.36a9.964 9.964 0 001.516 3.318c.726.906 1.598 1.657 2.588 2.176 1.02.525 2.075.788 3.156.788.981 0 1.946-.193 2.868-.56l.36-.135 3.701.96-.989-3.65.108-.345a9.946 9.946 0 00.783-3.127 10.019 10.019 0 00-1.073-3.565 9.948 9.948 0 00-2.868-3.06 10.037 10.037 0 00-3.542-1.181zM2.6 23.128l5.893-1.731L.51 10.25z"/>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 30C23.732 30 30 23.732 30 16C30 8.268 23.732 2 16 2C8.268 2 2 8.268 2 16C2 18.511 2.661 20.867 3.818 22.905L2 30L9.315 28.304C11.301 29.385 13.579 30 16 30ZM16 27.846C22.543 27.846 27.846 22.543 27.846 16C27.846 9.458 22.543 4.154 16 4.154C9.458 4.154 4.154 9.458 4.154 16C4.154 18.526 4.945 20.868 6.292 22.79L5.231 26.769L9.28 25.757C11.189 27.075 13.505 27.846 16 27.846Z" fill="white"/>
+            <path d="M12.5 9.5C12.167 8.831 11.657 8.891 11.141 8.891C10.219 8.891 8.781 9.995 8.781 12.05C8.781 13.734 9.523 15.578 12.024 18.336C14.438 20.998 17.609 22.375 20.242 22.328C22.875 22.281 23.417 20.015 23.417 19.25C23.417 18.911 23.206 18.742 23.061 18.696C22.164 18.265 20.509 17.463 20.133 17.312C19.756 17.162 19.56 17.366 19.438 17.477C19.096 17.802 18.419 18.761 18.188 18.977C17.956 19.192 17.61 19.083 17.467 19.002C16.937 18.789 15.503 18.151 14.36 17.043C12.945 15.672 12.862 15.2 12.596 14.78C12.383 14.444 12.539 14.238 12.617 14.148C12.922 13.797 13.343 13.254 13.531 12.984C13.72 12.715 13.57 12.305 13.48 12.05C13.094 10.953 12.766 10.035 12.5 9.5Z" fill="white"/>
         </svg>
     </a>
 </body>
