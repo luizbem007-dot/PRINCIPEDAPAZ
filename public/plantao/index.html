@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Plantão Funerário 24h - Atendimento imediato para funerária Príncipe da Paz">
+    <meta name="description" content="Plantão Funerário 24h - Atendimento imediato para Funerária Príncipe da Paz">
     <title>Plantão Funerário 24h - Atendimento Imediato</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     
     <style>
         * {
@@ -15,291 +16,384 @@
 
         html, body {
             height: 100%;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: #1a1a2e;
-            color: #ffffff;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            color: #3E2723;
             overflow-x: hidden;
         }
 
         body {
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            justify-content: flex-start;
+            align-items: stretch;
         }
 
-        .container {
-            width: 100%;
-            max-width: 500px;
-            text-align: center;
+        /* Hero Section */
+        .hero {
+            position: relative;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            gap: 30px;
-            animation: fadeIn 0.8s ease-in;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
         }
 
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* Background Image */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image: url('https://images.unsplash.com/photo-1511632765486-a01980e01a18?q=80&w=2400');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0.15;
+            z-index: 1;
         }
 
-        /* Logo */
-        .logo {
-            width: 80px;
-            height: 80px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+        /* Overlay */
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(245, 240, 232, 0.95) 0%, rgba(255, 250, 245, 0.95) 100%);
+            z-index: 2;
+        }
+
+        /* Header */
+        .hero-header {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 40px;
+            z-index: 10;
+        }
+
+        .logo-header {
+            width: 50px;
+            height: 50px;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 48px;
-            border: 2px solid rgba(212, 175, 55, 0.3);
-            animation: pulse 3s infinite;
         }
 
-        @keyframes pulse {
-            0%, 100% {
-                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.7);
-            }
-            50% {
-                box-shadow: 0 0 0 10px rgba(212, 175, 55, 0);
-            }
+        .logo-header svg {
+            width: 100%;
+            height: 100%;
         }
 
-        /* Título Principal */
-        h1 {
-            font-size: 28px;
+        .contact-btn {
+            background: #D4AF37;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 25px;
+            border: none;
             font-weight: 700;
-            line-height: 1.3;
-            margin: 20px 0 0 0;
-            color: #ffffff;
-            letter-spacing: -0.5px;
+            font-size: 14px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
         }
 
-        @media (max-width: 480px) {
-            h1 {
-                font-size: 24px;
-            }
+        .contact-btn:hover {
+            background: #C4A027;
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
+            transform: translateY(-2px);
         }
 
-        /* Subtítulo */
-        .subtitle {
-            font-size: 16px;
+        /* Content */
+        .hero-content {
+            position: relative;
+            z-index: 5;
+            max-width: 900px;
+            padding: 60px 40px;
+            margin: 0 auto;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 5rem);
+            font-weight: 700;
+            line-height: 1.2;
+            color: #2C2C2C;
+            margin-bottom: 20px;
+            letter-spacing: -1px;
+        }
+
+        .hero-title .highlight {
+            color: #D4AF37;
+            font-weight: 900;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
             line-height: 1.6;
-            color: #d0d0d0;
-            font-weight: 400;
-            margin: 15px 0 0 0;
+            color: #5C5C5C;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        @media (max-width: 480px) {
-            .subtitle {
-                font-size: 15px;
-            }
+        .hero-subtitle .highlight {
+            color: #D4AF37;
+            font-weight: 700;
         }
 
-        /* Seção do Botão */
-        .cta-section {
-            margin: 30px 0;
-            animation: slideUp 0.8s ease-in-out 0.3s both;
-        }
-
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        /* Botão WhatsApp */
-        .whatsapp-btn {
+        /* CTA Button */
+        .cta-primary {
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 20px 40px;
-            font-size: 18px;
-            font-weight: 700;
-            background: #25D366;
-            color: #ffffff;
-            border: none;
+            background: #D4AF37;
+            color: white;
+            padding: 18px 40px;
             border-radius: 30px;
-            text-decoration: none;
+            border: none;
+            font-weight: 700;
+            font-size: 1.1rem;
             cursor: pointer;
+            text-decoration: none;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
             transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(37, 211, 102, 0.3);
-            width: 100%;
-            max-width: 320px;
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.35);
+            margin: 0 auto 20px;
+            display: inline-flex;
         }
 
-        .whatsapp-btn:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: rgba(255, 255, 255, 0.2);
-            transition: left 0.5s ease;
-        }
-
-        .whatsapp-btn:hover {
-            background: #1ecb4f;
-            box-shadow: 0 12px 35px rgba(37, 211, 102, 0.5);
+        .cta-primary:hover {
+            background: #C4A027;
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.45);
             transform: translateY(-3px);
         }
 
-        .whatsapp-btn:hover:before {
-            left: 100%;
-        }
-
-        .whatsapp-btn:active {
+        .cta-primary:active {
             transform: translateY(-1px);
         }
 
-        /* Ícone Pulsante */
-        .pulse-icon {
-            display: inline-block;
-            animation: buttonPulse 2s infinite;
+        .whatsapp-icon {
+            width: 20px;
+            height: 20px;
         }
 
-        @keyframes buttonPulse {
+        /* Security Message */
+        .security-message {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            font-size: 0.95rem;
+            color: #666;
+            margin-top: 10px;
+        }
+
+        .security-message svg {
+            width: 16px;
+            height: 16px;
+            color: #4CAF50;
+        }
+
+        .floating-button {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #D4AF37;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            z-index: 40;
+            animation: pulse-button 2s infinite;
+        }
+
+        .floating-button:hover {
+            background: #C4A027;
+            transform: scale(1.1);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+
+        @keyframes pulse-button {
             0%, 100% {
-                transform: scale(1);
+                box-shadow: 0 8px 25px rgba(212, 175, 55, 0.4);
             }
             50% {
-                transform: scale(1.1);
+                box-shadow: 0 8px 35px rgba(212, 175, 55, 0.6);
             }
         }
 
-        /* Texto de Suporte */
-        .support-text {
-            font-size: 13px;
-            color: #a0a0a0;
-            margin-top: 15px;
-            line-height: 1.5;
+        .floating-button svg {
+            width: 32px;
+            height: 32px;
+            color: white;
         }
 
-        /* Rodapé */
-        footer {
-            position: absolute;
-            bottom: 20px;
-            width: 100%;
-            text-align: center;
-            font-size: 12px;
-            color: #666666;
-            opacity: 0.7;
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero-header {
+                padding: 16px 20px;
+            }
+
+            .logo-header {
+                width: 40px;
+                height: 40px;
+            }
+
+            .contact-btn {
+                padding: 10px 20px;
+                font-size: 13px;
+            }
+
+            .hero-content {
+                padding: 40px 20px;
+            }
+
+            .hero-title {
+                margin-bottom: 16px;
+            }
+
+            .hero-subtitle {
+                margin-bottom: 32px;
+            }
+
+            .cta-primary {
+                padding: 16px 32px;
+                font-size: 1rem;
+            }
+
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .floating-button svg {
+                width: 28px;
+                height: 28px;
+            }
         }
 
         @media (max-width: 480px) {
-            .container {
-                gap: 25px;
-                padding: 0 15px;
+            .hero-header {
+                padding: 12px 16px;
             }
 
-            .whatsapp-btn {
-                padding: 18px 30px;
-                font-size: 16px;
+            .logo-header {
+                width: 35px;
+                height: 35px;
             }
 
-            h1 {
-                font-size: 22px;
-            }
-        }
-
-        /* Responsividade Extra Pequena */
-        @media (max-height: 600px) {
-            body {
-                min-height: auto;
-                padding: 15px;
+            .contact-btn {
+                display: none;
             }
 
-            .container {
-                gap: 15px;
+            .hero-content {
+                padding: 30px 16px;
             }
 
-            h1 {
-                font-size: 20px;
-                margin: 10px 0 0 0;
+            .hero-title {
+                font-size: 1.8rem;
+                margin-bottom: 12px;
             }
 
-            .subtitle {
-                font-size: 14px;
-                margin: 10px 0 0 0;
+            .hero-subtitle {
+                font-size: 1rem;
+                margin-bottom: 24px;
             }
 
-            .whatsapp-btn {
-                padding: 15px 25px;
-                font-size: 15px;
+            .cta-primary {
+                padding: 14px 28px;
+                font-size: 0.95rem;
+                gap: 8px;
+            }
+
+            .whatsapp-icon {
+                width: 18px;
+                height: 18px;
+            }
+
+            .security-message {
+                font-size: 0.85rem;
+            }
+
+            .floating-button {
+                width: 50px;
+                height: 50px;
+                bottom: 16px;
+                right: 16px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Logo WhatsApp -->
-        <div class="logo">
-            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style="width: 60px; height: 60px;">
-                <path d="M17.6915026,2.4744748 C15.6694733,0.4899267 12.7299703,0.0151496 10.0151496,0.0151496 C4.51299703,0.0151496 0.0151496,4.51299703 0.0151496,10.0151496 C0.0151496,11.8006289 0.4744748,13.5355855 1.28344671,15.0903974 L0,24 L9.10344671,22.7315722 C10.5681095,23.4867725 12.276596,24 14.0151496,24 C19.5172921,24 24,19.5172921 24,14.0151496 C24,8.90569105,20.7299703,4.25932539 17.6915026,2.4744748 Z M10.0151496,21.9848504 C8.45610687,21.9848504 6.95459631,21.5849296,5.64919733,20.8344671 L5.41577151,20.6891385 L2.68814331,21.3395010 L3.34322035,18.7060046 L3.17788945,17.4512563 C2.31003344,16.0866935 1.87769785,14.4507042 1.87769785,12.7149321 C1.87769785,7.85285580 5.64919733,3.88119064 10.5122516,3.88119064 C13.1262315,3.88119064 15.5880995,4.88184397 17.3045267,6.73309269 C19.0209539,8.58434141 20.122516,11.0462094 20.122516,13.6599030 C20.122516,18.5221193 16.3510165,22.4937854 10.0151496,21.9848504 Z M16.4532202,14.9565726 C16.2028577,14.8112440 14.9481095,14.1608816 14.6993710,14.0606716 C14.4506325,13.9604617 14.2511921,13.9104567 14.0517517,14.1608816 C13.8523113,14.4112441 13.3532804,15.0116045 13.1538399,15.2620671 C12.9544995,15.5124296 12.7550591,15.5625349 12.5046966,15.4172263 C12.2542340,15.2720177 11.4054348,14.9565726 10.3520798,14.0053476 C9.54318440,13.3298474 8.99502762,12.4808681 8.79558721,12.2305055 C8.59614680,11.9802329 8.78207720,11.7960225 8.92737587,11.6537689 C9.05596325,11.5261047 9.21630319,11.3256447 9.36160186,11.1262043 C9.50690053,10.9267639 9.55699589,10.7773348 9.65706291,10.5268722 C9.75712993,10.2765097 9.70703457,10.0771192 9.60695452,9.93181050 C9.50687446,9.78650183 8.99502762,8.53182196 8.74525903,7.95301106 C8.50523886,7.39906617 8.26521868,7.47460095 8.08105125,7.46960045 L7.51223134,7.45459996 C7.31278886,7.45459996 6.99707631,7.52464595 6.74730772,7.77502863 C6.49753913,8.02541132 5.71838022,8.67577852 5.71838022,9.93045452 C5.71838022,11.1851348 6.76975172,12.3898149 6.9191604,12.6401775 C7.06856907,12.8906401 8.99502762,16.2128196 12.1551921,17.4673979 C13.1086177,17.8171744 13.8573061,18.0424570 14.4460170,18.2118273 C15.4496621,18.4922392 16.3732473,18.0924184 16.6235098,17.5937049 C16.8737724,17.0949915 17.3729034,16.2760267 17.5723438,15.9605816 C17.7717842,15.6450166 17.9711545,15.5949113 18.2216171,15.4497027 C18.4720796,15.3044941 18.2024221,14.1397912 16.4532202,14.9565726 Z" fill="#25D366"/>
-            </svg>
+    <!-- Hero Section -->
+    <section class="hero">
+        <!-- Header -->
+        <div class="hero-header">
+            <div class="logo-header">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="50" height="50">
+                    <circle cx="100" cy="100" r="95" fill="none" stroke="#D4AF37" stroke-width="3"/>
+                    <text x="100" y="110" font-family="Playfair Display, serif" font-size="60" font-weight="700" text-anchor="middle" fill="#D4AF37">P</text>
+                </svg>
+            </div>
+            <a href="#" class="contact-btn" onclick="document.querySelector('.floating-button').click(); return false;">
+                Contato
+            </a>
         </div>
 
-        <!-- Título -->
-        <h1>Plantão Funerário 24h: Atendimento Imediato</h1>
+        <!-- Content -->
+        <div class="hero-content">
+            <h1 class="hero-title">
+                Plantão Funerário 24h:<br>
+                <span class="highlight">Atendimento Imediato</span>
+            </h1>
 
-        <!-- Subtítulo -->
-        <p class="subtitle">
-            Perdeu um ente querido? Não se preocupe com a burocracia. Nossa equipe cuida de tudo para você com o máximo respeito.
-        </p>
+            <p class="hero-subtitle">
+                Perdeu um ente querido? <span class="highlight">Não se preocupe com a burocracia</span>. Nossa equipe cuida de tudo para você com o máximo respeito.
+            </p>
 
-        <!-- Botão WhatsApp -->
-        <div class="cta-section">
-            <a href="https://wa.me/5527997363659" class="whatsapp-btn" target="_blank" rel="noopener noreferrer">
-                <span class="pulse-icon">🟢</span>
+            <a href="https://wa.me/5527997363659" target="_blank" rel="noopener noreferrer" class="cta-primary">
+                <svg class="whatsapp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.844 1.159l-.345.215-3.559-.93 1.005 3.902.235.36a9.964 9.964 0 001.516 3.318c.726.906 1.598 1.657 2.588 2.176 1.02.525 2.075.788 3.156.788.981 0 1.946-.193 2.868-.56l.36-.135 3.701.96-.989-3.65.108-.345a9.946 9.946 0 00.783-3.127 10.019 10.019 0 00-1.073-3.565 9.948 9.948 0 00-2.868-3.06 10.037 10.037 0 00-3.542-1.181zM2.6 23.128l5.893-1.731L.51 10.25z"/>
+                </svg>
                 LIGAR AGORA - (27) 99736-3659
             </a>
-            <p class="support-text">
-                Clique para abrir o WhatsApp<br>
-                Resposta em menos de 1 minuto
-            </p>
+
+            <div class="security-message">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41L9 16.17z"/>
+                </svg>
+                Sem compromisso • Sem dados bancários
+            </div>
         </div>
-    </div>
+    </section>
 
-    <!-- Rodapé -->
-    <footer>
-        Príncipe da Paz - Atendimento 24 Horas
-    </footer>
-
-    <script>
-        // Garante que a página carregue no topo
-        window.addEventListener('load', function() {
-            window.scrollTo(0, 0);
-        });
-
-        // Analytics simples (opcional)
-        const btn = document.querySelector('.whatsapp-btn');
-        btn.addEventListener('click', function() {
-            if (typeof window.gtag !== 'undefined') {
-                gtag('event', 'click_whatsapp_plantao', {
-                    'phone': '5527997363659'
-                });
-            }
-        });
-    </script>
+    <!-- Floating Button -->
+    <a href="https://wa.me/5527997363659" target="_blank" rel="noopener noreferrer" class="floating-button" title="Fale conosco pelo WhatsApp">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a9.87 9.87 0 00-4.844 1.159l-.345.215-3.559-.93 1.005 3.902.235.36a9.964 9.964 0 001.516 3.318c.726.906 1.598 1.657 2.588 2.176 1.02.525 2.075.788 3.156.788.981 0 1.946-.193 2.868-.56l.36-.135 3.701.96-.989-3.65.108-.345a9.946 9.946 0 00.783-3.127 10.019 10.019 0 00-1.073-3.565 9.948 9.948 0 00-2.868-3.06 10.037 10.037 0 00-3.542-1.181zM2.6 23.128l5.893-1.731L.51 10.25z"/>
+        </svg>
+    </a>
 </body>
 </html>
