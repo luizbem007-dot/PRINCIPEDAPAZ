@@ -76,16 +76,15 @@
         }
 
         .logo-header {
-            width: 48px;
-            height: 48px;
+            height: 72px;
             display: flex;
             align-items: center;
-            justify-content: center;
         }
 
-        .logo-header svg {
-            width: 100%;
-            height: 100%;
+        .logo-header img {
+            height: 72px;
+            width: auto;
+            object-fit: contain;
         }
 
         .contact-btn {
@@ -131,14 +130,14 @@
             font-size: clamp(2.2rem, 7.5vw, 4.4rem);
             font-weight: 800;
             line-height: 1.18;
-            color: #0F172A;
+            color: #1B3A5C;
             margin-bottom: 24px;
             letter-spacing: -1px;
         }
 
         .hero-title .highlight {
             color: #1B3A5C;
-            font-weight: 900;
+            font-style: italic;
         }
 
         .hero-subtitle {
@@ -261,8 +260,11 @@
             }
 
             .logo-header {
-                width: 40px;
-                height: 40px;
+                height: 56px;
+            }
+
+            .logo-header img {
+                height: 56px;
             }
 
             .contact-btn {
@@ -306,8 +308,11 @@
             }
 
             .logo-header {
-                width: 36px;
-                height: 36px;
+                height: 48px;
+            }
+
+            .logo-header img {
+                height: 48px;
             }
 
             .contact-btn {
@@ -366,10 +371,7 @@
         <!-- Header -->
         <div class="hero-header">
             <div class="logo-header">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="48" height="48">
-                    <circle cx="100" cy="100" r="95" fill="none" stroke="#1B3A5C" stroke-width="2"/>
-                    <text x="100" y="115" font-family="Playfair Display, serif" font-size="60" font-weight="700" text-anchor="middle" fill="#1B3A5C">P</text>
-                </svg>
+                <img src="../Logo.png" alt="Funerária Príncipe da Paz">
             </div>
             <a href="https://wa.me/5527997363659" target="_blank" rel="noopener noreferrer" class="contact-btn" onclick="return gtag_report_conversion('https://wa.me/5527997363659')">
                 Contato
